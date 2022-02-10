@@ -4,9 +4,8 @@
         <!-- Sidebar Holder -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>彌生酒店管理後台</h3>
+                <h4 class="mb-1">彌生酒店管理後台</h4>
             </div>
-
             <ul class="list-unstyled components">
             	<div class="m-2" >
           			<img src="<%=request.getContextPath()+"/resources/images/avar.png" %>" class="rounded-circle m-2" width="25" height="25" alt="User Image"><%= session.getAttribute("username") %>
@@ -15,39 +14,39 @@
                     <a href="<%=request.getContextPath()+"/dashboard.jsp" %>">儀錶板</a>
                 </li>
                 <li>
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">功能模組</a>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">住房管理</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="<%=request.getContextPath()+"/admin1.jsp" %>">功能一</a>
+                            <a href="<%=request.getContextPath()+"/back-end/demo/admin1.jsp" %>">辦理入住</a>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()+"/admin2.jsp" %>">功能二</a>
+                            <a href="<%=request.getContextPath()+"/back-end/demo/admin2.jsp" %>">住房結帳</a>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()+"/admin3.jsp" %>">功能三</a>
+                            <a href="<%=request.getContextPath()+"/back-end/demo/admin3.jsp" %>">房務管理</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="<%=request.getContextPath()+"/admin-class.jsp" %>">自訂功能</a>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">功能模組</a>
+                    <a href="<%=request.getContextPath()+"/back-end/demo/admin-class.jsp" %>">活動管理</a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">商品管理</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="<%=request.getContextPath()+"/admin4.jsp" %>">功能四</a>
+                            <a href="<%=request.getContextPath()+"/back-end/demo/admin4.jsp" %>">購物清單</a>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()+"/admin5.jsp" %>">功能五</a>
+                            <a href="<%=request.getContextPath()+"/back-end/demo/admin5.jsp" %>">商品維護</a>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()+"/admin6.jsp" %>">功能六</a>
+                            <a href="<%=request.getContextPath()+"/back-end/demo/admin6.jsp" %>">訂單管理</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="<%=request.getContextPath()+"/emp/listAllEmp.jsp" %>">會員管理</a>
+                    <a href="<%=request.getContextPath()+"/back-end/emp/listAllEmp.jsp" %>">會員管理</a>
                 </li>
                 <li>
-                    <a href="#">Contact</a>
+                    <a href="#">Q&A維護</a>
                 </li>
 			</ul>
 
@@ -64,7 +63,7 @@
         </nav>
 
         <!-- Page Content Holder -->
-        <div id="content">
+        <div id="content" class="m-0 p-0">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
 
@@ -80,17 +79,19 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">Page</a>
+                                <a class="nav-link" href="#">客房服務</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">即時訊息</a>
+                            </li>
+                            <!--
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Page</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Page</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Page</a>
-                            </li>
+                            -->
                         </ul>
                     </div>
                 </div>

@@ -106,13 +106,13 @@ if (session != null)
 					<tr>
 						<td>
 							<label>帳號</label>
-							<input type="text" name="username" >
+							<input type="text" name="username" value="admin">
 						</td>
 					</tr>
 					<tr>
 						<td>
 							<label>密碼</label>
-							<input type="password" name="password" >
+							<input type="password" name="password"  value="pwd">
 						</td>
 					</tr>
 					<tr>
