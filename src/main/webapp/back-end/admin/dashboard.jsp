@@ -18,10 +18,10 @@
 <body>
 
 <%@ include file= "/back-end/framework/header.file" %>
-            
+<div class="container">            
         <main role="main">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h2">儀錶板 - 經營狀況即時看板</h1>
+            <h1 class="h2">經營現況即時看板</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
                 <button class="btn btn-sm btn-outline-secondary">Share</button>
@@ -165,7 +165,7 @@
             </table>
           </div>
         </main>
-
+</div>
 <%@ include file= "/back-end/framework/footer.file" %>
 
     <!-- Icons -->

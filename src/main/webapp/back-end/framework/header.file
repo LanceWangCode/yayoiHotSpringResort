@@ -11,7 +11,7 @@
           			<img src="<%=request.getContextPath()+"/resources/images/avar.png" %>" class="rounded-circle m-2" width="25" height="25" alt="User Image"><%= session.getAttribute("username") %>
         		</div>
                 <li class="active">
-                    <a href="<%=request.getContextPath()+"/dashboard.jsp" %>">儀錶板</a>
+                    <a href="<%=request.getContextPath()+"/back-end/admin/dashboard.jsp" %>">經營看板</a>
                 </li>
                 <li>
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">住房管理</a>
