@@ -1,0 +1,97 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>彌生酒店管理後台</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+            	<div class="m-2" >
+          			<img src="<%=request.getContextPath()+"/resources/images/avar.png" %>" class="rounded-circle m-2" width="25" height="25" alt="User Image"><%= session.getAttribute("username") %>
+        		</div>
+                <li class="active">
+                    <a href="<%=request.getContextPath()+"/back-end/admin/dashboard.jsp" %>">儀錶板</a>
+                </li>
+                <li>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">功能模組</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="<%=request.getContextPath()+"/back-end/demo/admin1.jsp" %>">功能一</a>
+                        </li>
+                        <li>
+                            <a href="<%=request.getContextPath()+"/back-end/demo/admin2.jsp" %>">功能二</a>
+                        </li>
+                        <li>
+                            <a href="<%=request.getContextPath()+"/back-end/demo/admin3.jsp" %>">功能三</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="<%=request.getContextPath()+"/back-end/demo/admin-class.jsp" %>">自訂功能</a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">功能模組</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href="<%=request.getContextPath()+"/back-end/demo/admin4.jsp" %>">功能四</a>
+                        </li>
+                        <li>
+                            <a href="<%=request.getContextPath()+"/back-end/demo/admin5.jsp" %>">功能五</a>
+                        </li>
+                        <li>
+                            <a href="<%=request.getContextPath()+"/back-end/demo/admin6.jsp" %>">功能六</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="<%=request.getContextPath()+"/emp/listAllEmp.jsp" %>">會員管理</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+			</ul>
+
+            <ul class="list-unstyled CTAs">
+            	<!--
+                <li>
+                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
+                </li>
+                -->
+                <li>
+                    <a href="<%=request.getContextPath()+"/back-end/admin/login.jsp" %>" class="article">登出</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content Holder -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="navbar-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Page</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
