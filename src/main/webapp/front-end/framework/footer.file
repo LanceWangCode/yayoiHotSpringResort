@@ -1,0 +1,54 @@
+ <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="social">
+                    <a href=""><li class="fa fa-instagram"></li></a>
+                    <a href=""><li class="fa fa-twitter"></li></a>
+                    <a href=""><li class="fa fa-facebook-f"></li></a>
+                </div>
+            </div>
+            <div class="col-12">
+               <ul>
+                  <li class="active"><a href="index.html" style="color:#C99A5B">Home</a></li>
+                  <li><a href="about.html" style="color:#C99A5B">關於彌生</a></li>
+                  <li><a href="news.html" style="color:#C99A5B">最新消息</a></li>
+                  <li><a href="room.html" style="color:#C99A5B">房型介紹</a></li>
+                  <li><a href="facility.html" style="color:#C99A5B">休閒設施</a></li>
+                  <li><a href="resortmap.html" style="color:#C99A5B">交通資訊</a></li>
+                  <li><a href="qa.html" style="color:#C99A5B">Q&A</a></li>
+                  <li><a href="contact.html" style="color:#C99A5B">聯絡我們</a></li>
+              </ul>
+          </div>
+          <div class="col-12">
+            <p>55546 南投縣魚池鄉日月潭中正路23號|<a href="tel:+886492856788" style="color:#C99A5B">+886-49-285-6788</a></p>
+          </div>
+        </div>
+    </div>
+</div>
+<!-- Footer Section End -->
+
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+<!-- Vendor JavaScript File -->
+<script src="<%=request.getContextPath()+"/resources/vendor/jquery/jquery.min.js" %>"></script>
+<script src="<%=request.getContextPath()+"/resources/vendor/jquery/jquery-migrate.min.js" %>"></script>
+<script src="<%=request.getContextPath()+"/resources/vendor/bootstrap/js/bootstrap.bundle.min.js" %>"></script>
+<script src="<%=request.getContextPath()+"/resources/vendor/easing/easing.min.js" %>"></script>
+<script src="<%=request.getContextPath()+"/resources/vendor/stickyjs/sticky.js" %>"></script>
+<script src="<%=request.getContextPath()+"/resources/vendor/superfish/hoverIntent.js" %>"></script>
+<script src="<%=request.getContextPath()+"/resources/vendor/superfish/superfish.min.js" %>"></script>
+<script src="<%=request.getContextPath()+"/resources/vendor/wow/wow.min.js" %>"></script>
+<script src="<%=request.getContextPath()+"/resources/vendor/slick/slick.min.js" %>"></script>
+<script src="<%=request.getContextPath()+"/resources/vendor/tempusdominus/js/moment.min.js" %>"></script>
+<script src="<%=request.getContextPath()+"/resources/vendor/tempusdominus/js/moment-timezone.min.js" %>"></script>
+<script src="<%=request.getContextPath()+"/resources/vendor/tempusdominus/js/tempusdominus-bootstrap-4.min.js" %>"></script>
+
+<!-- Booking Javascript File -->
+<script src="<%=request.getContextPath()+"/resources/js/booking.js" %>"></script>
+<script src="<%=request.getContextPath()+"/resources/js/jqBootstrapValidation.min.js" %>"></script>
+
+<!-- Main Javascript File -->
+<script src="<%=request.getContextPath()+"/resources/js/main.js" %>"></script>

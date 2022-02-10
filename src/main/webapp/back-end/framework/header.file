@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
     <div class="wrapper">
         <!-- Sidebar Holder -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>���Ͱs���޲z��x</h3>
+                <h3>彌生酒店管理後台</h3>
             </div>
 
             <ul class="list-unstyled components">
@@ -12,39 +12,39 @@
           			<img src="<%=request.getContextPath()+"/resources/images/avar.png" %>" class="rounded-circle m-2" width="25" height="25" alt="User Image"><%= session.getAttribute("username") %>
         		</div>
                 <li class="active">
-                    <a href="<%=request.getContextPath()+"/back-end/admin/dashboard.jsp" %>">�����O</a>
+                    <a href="<%=request.getContextPath()+"/dashboard.jsp" %>">儀錶板</a>
                 </li>
                 <li>
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">�\��Ҳ�</a>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">功能模組</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="<%=request.getContextPath()+"/back-end/demo/admin1.jsp" %>">�\��@</a>
+                            <a href="<%=request.getContextPath()+"/admin1.jsp" %>">功能一</a>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()+"/back-end/demo/admin2.jsp" %>">�\��G</a>
+                            <a href="<%=request.getContextPath()+"/admin2.jsp" %>">功能二</a>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()+"/back-end/demo/admin3.jsp" %>">�\��T</a>
+                            <a href="<%=request.getContextPath()+"/admin3.jsp" %>">功能三</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="<%=request.getContextPath()+"/back-end/demo/admin-class.jsp" %>">�ۭq�\��</a>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">�\��Ҳ�</a>
+                    <a href="<%=request.getContextPath()+"/admin-class.jsp" %>">自訂功能</a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">功能模組</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="<%=request.getContextPath()+"/back-end/demo/admin4.jsp" %>">�\��|</a>
+                            <a href="<%=request.getContextPath()+"/admin4.jsp" %>">功能四</a>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()+"/back-end/demo/admin5.jsp" %>">�\�भ</a>
+                            <a href="<%=request.getContextPath()+"/admin5.jsp" %>">功能五</a>
                         </li>
                         <li>
-                            <a href="<%=request.getContextPath()+"/back-end/demo/admin6.jsp" %>">�\�ऻ</a>
+                            <a href="<%=request.getContextPath()+"/admin6.jsp" %>">功能六</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="<%=request.getContextPath()+"/emp/listAllEmp.jsp" %>">�|���޲z</a>
+                    <a href="<%=request.getContextPath()+"/emp/listAllEmp.jsp" %>">會員管理</a>
                 </li>
                 <li>
                     <a href="#">Contact</a>
@@ -58,7 +58,7 @@
                 </li>
                 -->
                 <li>
-                    <a href="<%=request.getContextPath()+"/back-end/admin/login.jsp" %>" class="article">�n�X</a>
+                    <a href="<%=request.getContextPath()+"/index.jsp" %>" class="article">登出</a>
                 </li>
             </ul>
         </nav>
