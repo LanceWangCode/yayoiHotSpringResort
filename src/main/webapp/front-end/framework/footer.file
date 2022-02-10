@@ -12,14 +12,14 @@
             </div>
             <div class="col-12">
                <ul>
-                  <li class="active"><a href="index.html" style="color:#C99A5B">Home</a></li>
-                  <li><a href="about.html" style="color:#C99A5B">關於彌生</a></li>
-                  <li><a href="news.html" style="color:#C99A5B">最新消息</a></li>
-                  <li><a href="room.html" style="color:#C99A5B">房型介紹</a></li>
-                  <li><a href="facility.html" style="color:#C99A5B">休閒設施</a></li>
-                  <li><a href="resortmap.html" style="color:#C99A5B">交通資訊</a></li>
-                  <li><a href="qa.html" style="color:#C99A5B">Q&A</a></li>
-                  <li><a href="contact.html" style="color:#C99A5B">聯絡我們</a></li>
+                  <li class="active"><a href="<%=request.getContextPath()+"/index.jsp" %>" style="color:#C99A5B">Home</a></li>
+                  <li><a href="<%=request.getContextPath()+"/about.jsp" %>" style="color:#C99A5B">關於彌生</a></li>
+                  <li><a href="<%=request.getContextPath()+"/front-end/news/listAllNews.jsp" %>" style="color:#C99A5B">最新消息</a></li>
+                  <li><a href="<%=request.getContextPath()+"/front-end/room/listAllRoom.jsp" %>" style="color:#C99A5B">房型介紹</a></li>
+                  <li><a href="<%=request.getContextPath()+"/front-end/facility/listAllFacility.jsp" %>" style="color:#C99A5B">休閒設施</a></li>
+                  <li><a href="<%=request.getContextPath()+"/resortmap.jsp" %>" style="color:#C99A5B">交通資訊</a></li>
+                  <li><a href="<%=request.getContextPath()+"/front-end/qa/listAllQa.jsp" %>" style="color:#C99A5B">Q&A</a></li>
+                  <li><a href="<%=request.getContextPath()+"/contact.jsp" %>" style="color:#C99A5B">聯絡我們</a></li>
               </ul>
           </div>
           <div class="col-12">

@@ -2,22 +2,22 @@
 
   <header id="header">
      <a href="<%=request.getContextPath()+"/index.jsp" %>" class="logo"><img src="<%=request.getContextPath()+"/resources/img/logo.png" %>" alt="logo"></a>
-	 <a href="<%=request.getContextPath()+"/member/listAllMember.jsp" %>" class="log">會員專區</a>
-	 <a href="<%=request.getContextPath()+"/room/bookRoom.jsp" %>" class="roomclick">預約訂房</a>
-	 <a href="<%=request.getContextPath()+"/activity/listAllActivity.jsp" %>" class="activity">報名活動</a>
-	 <a href="<%=request.getContextPath()+"/product/listAllProduct.jsp" %>" class="product">訂購伴手禮</a>
-	 <a href="<%=request.getContextPath()+"/roomservice/listAllRoomservice.jsp" %>" class="roomservice">客房服務</a>
+	 <a href="<%=request.getContextPath()+"/front-end/member/listAllMember.jsp" %>" class="log">會員專區</a>
+	 <a href="<%=request.getContextPath()+"/front-end/room/bookRoom.jsp" %>" class="roomclick">預約訂房</a>
+	 <a href="<%=request.getContextPath()+"/front-end/activity/listAllActivity.jsp" %>" class="activity">報名活動</a>
+	 <a href="<%=request.getContextPath()+"/front-end/product/listAllProduct.jsp" %>" class="product">訂購伴手禮</a>
+	 <a href="<%=request.getContextPath()+"/front-end/roomservice/listAllRoomservice.jsp" %>" class="roomservice">客房服務</a>
 
      <div class="mobile-menu-btn"><i class="fa fa-bars" style="color:#5d0000;"></i></div>
      <nav class="main-menu top-menu">
      <ul>
           <li class="active"><a href="<%=request.getContextPath()+"/index.jsp" %>">Home</a></li>
           <li><a href="<%=request.getContextPath()+"/about.jsp" %>">關於彌生</a></li>
-          <li><a href="<%=request.getContextPath()+"/news/listAllNews.jsp" %>">最新消息</a></li>
-          <li><a href="<%=request.getContextPath()+"/room/listAllRoom.jsp" %>">房型介紹</a></li>
-          <li><a href="<%=request.getContextPath()+"/facility/listAllFacility.jsp" %>">休閒設施</a></li>
+          <li><a href="<%=request.getContextPath()+"/front-end/news/listAllNews.jsp" %>">最新消息</a></li>
+          <li><a href="<%=request.getContextPath()+"/front-end/room/listAllRoom.jsp" %>">房型介紹</a></li>
+          <li><a href="<%=request.getContextPath()+"/front-end/facility/listAllFacility.jsp" %>">休閒設施</a></li>
           <li><a href="<%=request.getContextPath()+"/resortmap.jsp" %>">交通資訊</a></li>
-          <li><a href="<%=request.getContextPath()+"/qa/listAllQa.jsp" %>">Q&A</a></li>
+          <li><a href="<%=request.getContextPath()+"/front-end/qa/listAllQa.jsp" %>">Q&A</a></li>
           <li><a href="<%=request.getContextPath()+"/contact.jsp" %>">聯絡我們</a></li>
 
      </ul>
