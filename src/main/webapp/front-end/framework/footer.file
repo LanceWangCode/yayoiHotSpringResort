@@ -46,6 +46,7 @@
 <script src="<%=request.getContextPath()+"/resources/vendor/tempusdominus/js/moment-timezone.min.js" %>"></script>
 <script src="<%=request.getContextPath()+"/resources/vendor/tempusdominus/js/tempusdominus-bootstrap-4.min.js" %>"></script>
 
+
 <!-- Booking Javascript File -->
 <script src="<%=request.getContextPath()+"/resources/js/booking.js" %>"></script>
 <script src="<%=request.getContextPath()+"/resources/js/jqBootstrapValidation.min.js" %>"></script>
