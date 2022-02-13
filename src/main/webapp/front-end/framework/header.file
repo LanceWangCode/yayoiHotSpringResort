@@ -19,7 +19,6 @@
           <li><a href="<%=request.getContextPath()+"/resortmap.jsp" %>">交通資訊</a></li>
           <li><a href="<%=request.getContextPath()+"/front-end/qa/listAllQa.jsp" %>">Q&A</a></li>
           <li><a href="<%=request.getContextPath()+"/contact.jsp" %>">聯絡我們</a></li>
-
      </ul>
   </nav>
   

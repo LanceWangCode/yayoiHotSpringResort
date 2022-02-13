@@ -29,9 +29,36 @@
     </div>
 </div>
 <!-- Footer Section End -->
+<a class="chat-room" data-toggle="modal" data-backdrop="static" data-keyboard="false" 
+   href="<%=request.getContextPath()+"/front-end/chat/connect.jsp"%>" data-target="#chatmodal" title="聊天室">
+   <i class="fa fa-commenting"></i></a>
 
 <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
+<!-- Chat Modal start -->
+<div class="modal fade" id="chatmodal">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+		        <h5 class="modal-title" id="modalLabel">---</h5>
+				
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">Close</span>
+		        </button>
+				<!---->
+		    </div>
+			<div class="modal-body">
+				<iframe src="" frameborder="0" width="97.5%" height="600px" allowfullscreen></iframe>
+			</div>
+			<!--
+			<div class="modal-footer">
+		        <button type="button" class="btn btn-default close-modal" data-dismiss="modal" onclick="$(&quot;video&quot;).each(function () { this.pause() });">Close</button>
+		    </div>
+		    -->
+		</div>
+	</div>
+</div>
+<!-- Chat Modal end -->
 <!-- Vendor JavaScript File -->
 <script src="<%=request.getContextPath()+"/resources/vendor/jquery/jquery.min.js" %>"></script>
 <script src="<%=request.getContextPath()+"/resources/vendor/jquery/jquery-migrate.min.js" %>"></script>
@@ -53,3 +80,21 @@
 
 <!-- Main Javascript File -->
 <script src="<%=request.getContextPath()+"/resources/js/main.js" %>"></script>
+
+
+<!-- reset the Modal when close -->
+<script>
+$('body').on('click', '[data-toggle="modal"]', function(){
+        $($(this).data("target")+' .modal-content iframe').attr('src',$(this).attr('href'));
+        $($(this).data("target")+' .modal-title').text($(this).attr('title'));
+        
+}); 
+function CloseModal(frameElement) {
+     if (frameElement) {
+        var dialog = $(frameElement).closest(".modal");
+        if (dialog.length > 0) {
+            dialog.modal("hide");
+        }
+     }
+}
+</script>	

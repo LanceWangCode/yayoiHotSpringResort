@@ -82,7 +82,7 @@
                                 <a class="nav-link" href="#">客房服務</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">即時訊息</a>
+                                <a class="nav-link" href="<%=request.getContextPath()+/back-end/chat/connect.jsp">即時訊息</a>
                             </li>
                             <!--
                             <li class="nav-item">

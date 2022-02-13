@@ -28,6 +28,15 @@
     <servlet-name>EmpServlet</servlet-name>
     <url-pattern>/emp/emp.do</url-pattern>
   </servlet-mapping>
+
+	<servlet>
+		<servlet-name>NameServlet</servlet-name>
+		<servlet-class>com.chat.controller.NameServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NameServlet</servlet-name>
+		<url-pattern>/chat.do</url-pattern>
+	</servlet-mapping>
   
   <filter>
     <filter-name>loginFilter</filter-name>
