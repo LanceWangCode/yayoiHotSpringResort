@@ -82,11 +82,20 @@
                                 <a class="nav-link" href="#">客房服務</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<%=request.getContextPath()+/back-end/chat/connect.jsp">即時訊息</a>
+                                <a class="nav-link" href="<%=request.getContextPath()+"/back-end/chat/chat.jsp" %>" 
+                                class="chat-room" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#chatmodal" title="線上客服">線上客服
+								<span id="chatcount" class="badge badge-danger navbar-badge">0</span>
+								</a>
                             </li>
                             <!--
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Page</a>
+	                            <a class="nav-link" href="#">
+								<i class="fas fa-kiwi-bird"></i>
+								</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<%=request.getContextPath()+"/back-end/chat/connect.jsp" %>" 
+                                class="chat-room" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#chatmodal" title="線上客服">線上客服</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Page</a>

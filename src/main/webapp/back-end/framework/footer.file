@@ -2,6 +2,31 @@
         </div>
     </div>
 
+<!-- Chat Modal start -->
+<div class="modal fade" id="chatmodal">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+		        <h5 class="modal-title" id="modalLabel">---</h5>
+		        <div class="w-90" style="float: right;">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <i class="fa fa-times"></i>
+		        </button>
+		        </div>
+		    </div>
+			<div class="modal-body">
+				<iframe src="" frameborder="0" width="97.5%" height="600px" allowfullscreen></iframe>
+			</div>
+			<!--
+			<div class="modal-footer">
+		        <button type="button" class="btn btn-default close-modal" data-dismiss="modal" onclick="$(&quot;video&quot;).each(function () { this.pause() });">Close</button>
+		    </div>
+		    -->
+		</div>
+	</div>
+</div>
+<!-- Chat Modal end -->
+
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <!-- Popper.JS -->
@@ -17,3 +42,76 @@
             });
         });
     </script>
+<!-- reset the Modal when close -->
+
+<!-- get chat count start -->
+<script>
+
+	var MyPoint = "/FriendWS/線上客服";
+	var host = window.location.host;
+	var path = window.location.pathname;
+	var webCtx = path.substring(0, path.indexOf('/', 1));
+	var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
+
+	//var statusOutput = document.getElementById("statusOutput");
+	//var messagesArea = document.getElementById("messagesArea");
+	var self = '線上客服';
+	var webSocket;
+
+	function connect() {
+		// create a websocket
+		webSocket = new WebSocket(endPointURL);
+
+		webSocket.onopen = function(event) {
+			console.log("Connect Success!");
+		};
+
+		webSocket.onmessage = function(event) {
+			var jsonObj = JSON.parse(event.data);
+			if ("open" === jsonObj.type) {
+				refreshFriendCnt(jsonObj);
+			} else if ("close" === jsonObj.type) {
+				refreshFriendCnt(jsonObj);
+			}
+			
+		};
+
+		webSocket.onclose = function(event) {
+			console.log("Disconnected!");
+		};
+	}
+
+	// 有好友上線或離線就更新數字
+	function refreshFriendCnt(jsonObj) {
+		var friends = jsonObj.users;
+		var friendCntSpan = document.getElementById("chatcount");
+		
+		friendCntSpan.innerText = friendCntSpan.textContent = (friends.length-1);
+	}
+
+	function disconnect() {
+		webSocket.close();
+	}
+</script>
+<!-- get chat count start -->
+
+<script>
+
+$( document ).ready(function() {
+   connect();
+});
+
+$('body').on('click', '[data-toggle="modal"]', function(){
+        $($(this).data("target")+' .modal-content iframe').attr('src',$(this).attr('href'));
+        $($(this).data("target")+' .modal-title').text($(this).attr('title'));
+        
+}); 
+function CloseModal(frameElement) {
+     if (frameElement) {
+        var dialog = $(frameElement).closest(".modal");
+        if (dialog.length > 0) {
+            dialog.modal("hide");
+        }
+     }
+}
+</script>	

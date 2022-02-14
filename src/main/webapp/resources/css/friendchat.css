@@ -13,7 +13,7 @@ html, body {
 
 .panel {
 	float: right;
-	border: 2px solid #0078ae;
+	border: 2px solid #C99A5B;
 	border-radius: 5px;
 	width: 50%;
 }
@@ -27,8 +27,8 @@ html, body {
 }
 
 .input-area {
-	background: #0078ae;
-	box-shadow: inset 0 0 10px #00568c;
+	background: #C99A5B;
+	box-shadow: inset 0 0 10px #c45516;
 }
 
 .input-area input {
@@ -53,12 +53,12 @@ h1 {
 }
 
 .statusOutput {
-	background: #0078ae;
+	background: #C99A5B;
 	text-align: center;
 	color: #ffffff;
 	border: 1px solid grey;
 	padding: 0.2em;
-	box-shadow: 0 0 5px #000000;
+	box-shadow: 0 0 5px #c45516;
 	width: 30%;
 	margin-top: 10%;
 	margin-left: 60%;
@@ -99,7 +99,7 @@ ul li{
 
 .me{
   float: right;
-  background: #0084ff;
+  background: #C99A5B;
   color: #fff;
 }
 

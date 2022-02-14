@@ -32,7 +32,7 @@ html, body {
 }
 
 .button {
-	background-color: #0078ae;
+	background-color: #C99A5B;
 	color: #ffffff;
 	border-radius: 5px;
 	position: absolute;

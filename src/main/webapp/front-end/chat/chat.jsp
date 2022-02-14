@@ -11,6 +11,11 @@
 <title>聊天室-Client</title>
 </head>
 <body onload="connect();" onunload="disconnect();">
+	<div class="border" style="float: right; border: 1px">
+        <button type="button" class="close" onclick="disconnect();" style="position: fixed;right: 15px;top: 15px; pedding: 0 10px !important;">
+        <span aria-hidden="true">&nbsp;&times;&nbsp;</span>
+        </button>
+	</div>
 	<h3 id="statusOutput" class="statusOutput"></h3>
 	<div id="row"></div>
 	<div id="messagesArea" class="panel message-area" ></div>
@@ -138,6 +143,7 @@
 		document.getElementById('sendMessage').disabled = true;
 		document.getElementById('connect').disabled = false;
 		document.getElementById('disconnect').disabled = true;
+		window.parent.CloseModal(window.frameElement);
 	}
 	
 	function updateFriendName(name) {

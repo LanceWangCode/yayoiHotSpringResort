@@ -32,7 +32,7 @@ html, body {
 }
 
 .button {
-	background-color: #0078ae;
+	background-color: #C99A5B;
 	color: #ffffff;
 	border-radius: 5px;
 	position: absolute;
@@ -40,14 +40,17 @@ html, body {
 	height: 40px; 
 	top : 50%;
 	left: 50%;
-	top: 50%; 
-	left : 50%;
 	margin: 20px 200px 0 -50px;
 }
 </style>
 <title>Join Us</title>
 </head>
 <body>
+	<div style="float: right; border: 1px">
+        <button type="button" class="close" onclick="closeParentModal();" style="position: fixed;right: 15px;top: 15px;">
+        <span aria-hidden="true">&times;</span>
+        </button>
+	</div>
 	<div id="outPopUp">
 		<h1 align="center">傳送即時訊息～</h1>
 		<form id="myForm" action="<%=request.getContextPath() %>/chat.do" method="POST">
@@ -70,6 +73,9 @@ html, body {
 		} else {
 			document.getElementById("myForm").submit();
 		}
+	}
+	function closeParentModal() {
+		window.parent.CloseModal(window.frameElement);
 	}
 </script>
 

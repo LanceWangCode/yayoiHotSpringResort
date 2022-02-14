@@ -17,6 +17,8 @@ if (session != null)
 
         body {
             margin: 0;
+            background-image: url('<%=request.getContextPath()%>/resources/img/slider/header-slider-3.jpg');
+            font-family: arial,"Microsoft JhengHei","微軟正黑體",sans-serif !important;
         }
 
         img {
@@ -54,12 +56,14 @@ if (session != null)
 		table.loginblock{
 			margin-left: auto;
   			margin-right: auto;
-  			border: 3px solid green;
+  			border: 3px solid #C99A5B;
+  			background-color: #f2f2f2;
+  			
 		}
 		td.logo{
 			/*border-color: #0F0;*/
 			min-width: 200px;
-			background-color:#0F0;
+			background-color:#C99A5B;
 			text-align: center;
 		}
 		@media screen and (max-width: 767.98px) {
@@ -94,8 +98,11 @@ if (session != null)
 </head>
 <body>
 <div class="content">
-	<h1>彌生酒店管理後台</h1>
+	
 	<table class="loginblock">
+		<tr >
+		<td colspan=2 style="background-color: #ffffff;"><img src="/CFA104G1/resources/img/logo.png" alt="logo"></td>
+		</tr>
 		<tr>
 			<td class="logo">
 			彌生酒店<br>管理後台
