@@ -10,4 +10,6 @@ public interface RoomTypePicDAO_interface {
 	public List<RoomTypePicVO> getAll();
 
 	public void deleteByRoomTypeId(Integer room_type_id);
+	
+	//asdasdasd
 }
