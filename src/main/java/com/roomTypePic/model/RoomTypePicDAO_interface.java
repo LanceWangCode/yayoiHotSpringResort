@@ -11,11 +11,11 @@ public interface RoomTypePicDAO_interface {
 
 	public void deleteByRoomTypeId(Integer room_type_id);
 	
-<<<<<<< HEAD
+
 	
 	//gfhgfhgfhgfhgfhg hjghjgj
-=======
+
 	//asdasdasd
 	//sadsadasda
->>>>>>> branch 'master' of https://github.com/LanceWangCode/yayoiHotSpringResort
+
 }
