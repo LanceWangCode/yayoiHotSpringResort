@@ -17,5 +17,6 @@ public interface RoomTypePicDAO_interface {
 
 	//asdasdasd
 	//sadsadasda
+	///tttt0501
 
 }
