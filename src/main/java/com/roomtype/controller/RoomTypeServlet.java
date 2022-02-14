@@ -26,7 +26,7 @@ public class RoomTypeServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		
-		if ("getOne_For_Update".equals(action)) { // 來自listAllEmp.jsp的請求
+		if ("getOne_For_Update".equals(action)) { // 來自listAllEmp.jsp的請求aaaaaaaaa
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
