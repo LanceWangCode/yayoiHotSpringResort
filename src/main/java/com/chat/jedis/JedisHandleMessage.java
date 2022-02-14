@@ -12,12 +12,8 @@ public class JedisHandleMessage {
 
 	public static List<String> getHistoryMsg(String sender, String receiver) {
 		String key = new StringBuilder(sender).append(":").append(receiver).toString();
-		String redispassword = "lenpass";
-		//int redisdatabase = 70;
 		Jedis jedis = null;
 		jedis = pool.getResource();
-		jedis.auth(redispassword);
-		//jedis.select(70);
 		List<String> historyData = jedis.lrange(key, 0, -1);
 		jedis.close();
 		return historyData;
