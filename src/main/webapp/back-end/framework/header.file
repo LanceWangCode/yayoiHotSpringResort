@@ -17,6 +17,15 @@
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">住房管理</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
+                            <a href="<%=request.getContextPath()+"/back-end/roomType/listAllRoomType.jsp" %>">房間類別</a>
+                        </li>
+                        <li>
+                            <a href="<%=request.getContextPath()+"/back-end/roomPic/listAllRoomPic.jsp" %>">房間照片</a>
+                        </li>
+                        <li>
+                            <a href="<%=request.getContextPath()+"/back-end/room/listAllRoom.jsp" %>">房間管理</a>
+                        </li>
+                        <li>
                             <a href="<%=request.getContextPath()+"/back-end/demo/admin1.jsp" %>">辦理入住</a>
                         </li>
                         <li>
@@ -28,7 +37,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="<%=request.getContextPath()+"/back-end/demo/admin-class.jsp" %>">活動管理</a>
+                    <a href="<%=request.getContextPath()+"/back-end/qaList/listAllQA.jsp" %>">Q&A管理</a>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">商品管理</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>

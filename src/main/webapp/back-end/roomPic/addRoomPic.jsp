@@ -1,10 +1,11 @@
 <%@page import="com.room.model.RoomVO"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.room.model.*"%>
+<%@ page import="com.roomType.model.*"%>
+<%@ page import="com.roomTypePic.model.*"%>
 
 <%
-RoomVO roomVO = (RoomVO) request.getAttribute("roomVO");
+RoomTypePicVO roomTypePicVO = (RoomTypePicVO) request.getAttribute("roomTypePicVO");
 %>
 
 <!-- 等另一遍DAO出來再用 -->
@@ -13,7 +14,7 @@ RoomVO roomVO = (RoomVO) request.getAttribute("roomVO");
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>房間新增 - addRoom.jsp</title>
+<title>照片新增</title>
 <%@ include file= "/back-end/framework/include.file" %>
 
 <style>
@@ -60,12 +61,12 @@ th, td {
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>房間新增 - addRoom.jsp</h3>
+				<h3>照片新增 </h3>
 			</td>
 		</tr>
 	</table>
 
-	<h3>資料新增:</h3>
+	<h3>照片新增:</h3>
 
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -77,28 +78,16 @@ th, td {
 		</ul>
 	</c:if>
 
-	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/room/room.do" name="form1">
+	<FORM METHOD="post" enctype="multipart/form-data" ACTION="<%=request.getContextPath()%>/roomType/roomTypePicServlet.do" name="form1">
 		<table>
 			<tr>
 				<td>房型名稱:</td>
 				<td><input type="TEXT" name="room_type_id" size="45"
-					value="<%=(roomVO == null) ? "2" : roomVO.getRoom_type_id()%>" /></td>
+					value="<%= roomTypePicVO.getRoom_type_id()%>"  /></td>
 			</tr>
 			<tr>
-				<td>床位:</td>
-				<td><input type="TEXT" name="qtyofbeds" size="45"
-					value="<%=(roomVO == null) ? "2" : roomVO.getQtyofbeds()%>" /></td>
-			</tr>
-			
-			<tr>
-				<td>上下架狀態:</td>
-				<td><input type="TEXT" name="room_sale_status" size="45"
-					value="<%=(roomVO == null) ? "true" : roomVO.getRoom_sale_status()%>" /></td>
-			</tr>
-			<tr>
-				<td>房間狀態:</td>
-				<td><input type="TEXT" name="room_status" size="45"
-					value="<%=(roomVO == null) ? "1" : roomVO.getRoom_status()%>" /></td>
+				<td>房型圖片</td>
+				<td><input type="file" name="room_type_pic" size="50" /></td>
 			</tr>
 
 			
@@ -108,6 +97,7 @@ th, td {
 		<input type="hidden" name="action" value="insert"> 
 		<input type="submit" value="送出新增">
 	</FORM>
+
 </div>
 <%@ include file= "/back-end/framework/footer.file" %>
 	

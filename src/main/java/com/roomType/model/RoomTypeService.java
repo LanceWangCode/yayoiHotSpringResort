@@ -1,8 +1,8 @@
-package com.roomtype.model;
+package com.roomType.model;
 
 import java.util.List;
 
-import com.roomtype.*;
+import com.roomType.*;
 
 
 public class RoomTypeService {
@@ -12,10 +12,9 @@ public class RoomTypeService {
 		dao = new RoomTypeDAO();
 	}
 	
-	public RoomTypeVO addRoomType(Integer room_type_id,String room_type_name,Integer room_type_amount,String room_type_content,boolean room_type_sale_status,Integer room_total_person,Integer room_total_score,Integer room_type_price) {
+	public RoomTypeVO addRoomType(String room_type_name,Integer room_type_amount,String room_type_content,boolean room_type_sale_status,Integer room_total_person,Integer room_total_score,Integer room_type_price) {
 		RoomTypeVO roomTypeVO = new RoomTypeVO();
 		
-		roomTypeVO.setRoom_type_id(room_type_id);
 		roomTypeVO.setRoom_type_name(room_type_name);
 		roomTypeVO.setRoom_type_amount(room_type_amount);
 		roomTypeVO.setRoom_type_content(room_type_content);
@@ -23,8 +22,8 @@ public class RoomTypeService {
 		roomTypeVO.setRoom_total_person(room_total_person);
 		roomTypeVO.setRoom_total_score(room_total_score);
 		roomTypeVO.setRoom_type_price(room_type_price);
-		dao.insert(roomTypeVO);
-		
+		int id = dao.insert(roomTypeVO);
+		roomTypeVO.setRoom_type_id(id);
 		return roomTypeVO;
 	}
 	
@@ -45,11 +44,11 @@ public class RoomTypeService {
 		return roomTypeVO;
 	}
 
-	public void deleteRoom(Integer room_type_id) {
+	public void deleteRoomType(Integer room_type_id) {
 		dao.delete(room_type_id);
 	}
 
-	public RoomTypeVO getOneRoom(Integer room_type_id) {
+	public RoomTypeVO getOneRoomType(Integer room_type_id) {
 		return dao.findByPK(room_type_id);
 	}
 

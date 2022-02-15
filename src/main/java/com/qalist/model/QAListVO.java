@@ -7,7 +7,7 @@ public class QAListVO implements Serializable{
 	private Integer no;
 	private String question;
 	private String answer;
-	private Integer status;
+	private Boolean status;
 	
 	
 	public Integer getQa_id() {
@@ -34,12 +34,13 @@ public class QAListVO implements Serializable{
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
-	public Integer getStatus() {
+	public Boolean getStatus() {
 		return status;
 	}
-	public void setStatus(Integer status) {
+	public void setStatus(Boolean status) {
 		this.status = status;
 	}
+	
 	
 	
 }

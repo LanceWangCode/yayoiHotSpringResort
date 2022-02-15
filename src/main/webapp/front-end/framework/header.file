@@ -17,7 +17,7 @@
           <li><a href="<%=request.getContextPath()+"/front-end/room/listAllRoom.jsp" %>">房型介紹</a></li>
           <li><a href="<%=request.getContextPath()+"/front-end/facility/listAllFacility.jsp" %>">休閒設施</a></li>
           <li><a href="<%=request.getContextPath()+"/resortmap.jsp" %>">交通資訊</a></li>
-          <li><a href="<%=request.getContextPath()+"/front-end/qa/listAllQa.jsp" %>">Q&A</a></li>
+          <li><a href="<%=request.getContextPath()+"/front-end/QAlist/QAlist.jsp" %>">Q&A</a></li>
           <li><a href="<%=request.getContextPath()+"/contact.jsp" %>">聯絡我們</a></li>
      </ul>
   </nav>

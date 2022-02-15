@@ -1,4 +1,4 @@
-package com.roomtype.model;
+package com.roomType.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import com.roomtype.model.RoomTypeVO;
+
 
 public class RoomTypeDAO implements RoomTypeDAO_interface {
 
@@ -26,22 +26,23 @@ public class RoomTypeDAO implements RoomTypeDAO_interface {
 		}
 	}
 
-	private static final String INSERT_STMT = "INSERT INTO CFA104G1.ROOM_TYPE (room_type_name,room_type_amount,room_type_content,room_type_sale_status,room_total_person,room_total_score,room_type_price) "
+	private static final String INSERT_STMT = "INSERT INTO ROOM_TYPE (room_type_name,room_type_amount,room_type_content,room_type_sale_status,room_total_person,room_total_score,room_type_price) "
 			+ "VALUES ( ?, ?, ?, ?, ?, ?, ?)";
-	private static final String GET_ALL_STMT = "SELECT * FROM CFA104G1.ROOM_TYPE order by room_type_id";
-	private static final String GET_ONE_STMT = "SELECT * FROM CFA104G1.ROOM_TYPE where room_type_id = ?";
-	private static final String DELETE = "DELETE FROM CFA104G1.ROOM_TYPE where room_type_id = ?";
-	private static final String UPDATE = "UPDATE CFA104G1.ROOM_TYPE set room_type_id=?, room_type_name=?, room_type_amount=?, room_type_content=?, room_type_sale_status=?, room_total_person=?, room_total_score=?, room_type_price=? where room_type_id = ?";
+	private static final String GET_ALL_STMT = "SELECT * FROM ROOM_TYPE order by room_type_id";
+	private static final String GET_ONE_STMT = "SELECT * FROM ROOM_TYPE where room_type_id = ?";
+	private static final String DELETE = "DELETE FROM ROOM_TYPE where room_type_id = ?";
+	private static final String UPDATE = "UPDATE ROOM_TYPE set room_type_id=?, room_type_name=?, room_type_amount=?, room_type_content=?, room_type_sale_status=?, room_total_person=?, room_total_score=?, room_type_price=? where room_type_id = ?";
 
 	@Override
-	public void insert(RoomTypeVO roomTypeVO) {
+	public int insert(RoomTypeVO roomTypeVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		int roomTypeId = -1;
 
 		try {
 
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(INSERT_STMT);
+			pstmt = con.prepareStatement(INSERT_STMT, PreparedStatement.RETURN_GENERATED_KEYS);
 
 			pstmt.setString(1, roomTypeVO.getRoom_type_name());
 			pstmt.setInt(2, roomTypeVO.getRoom_type_amount());
@@ -51,7 +52,16 @@ public class RoomTypeDAO implements RoomTypeDAO_interface {
 			pstmt.setInt(6, roomTypeVO.getRoom_total_score());
 			pstmt.setInt(7, roomTypeVO.getRoom_type_price());
 
-			pstmt.executeUpdate();
+			int pk = pstmt.executeUpdate();
+			
+			//確定PK
+			if(pk>0) {
+				//找出PK
+				ResultSet rs = pstmt.getGeneratedKeys();
+				rs.next();
+				roomTypeId = rs.getInt(1);
+				}
+			
 
 			// Handle any SQL errors
 		} catch (SQLException se) {
@@ -73,6 +83,8 @@ public class RoomTypeDAO implements RoomTypeDAO_interface {
 				}
 			}
 		}
+		
+		return roomTypeId;
 
 	}
 

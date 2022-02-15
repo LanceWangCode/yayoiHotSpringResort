@@ -1,10 +1,11 @@
+<%@page import="com.qalist.model.QAListVO"%>
 <%@page import="com.room.model.RoomVO"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.room.model.*"%>
 
 <%
-RoomVO roomVO = (RoomVO) request.getAttribute("roomVO");
+QAListVO qaListVO = (QAListVO) request.getAttribute("qaListVO");
 %>
 
 <!-- 等另一遍DAO出來再用 -->
@@ -13,7 +14,7 @@ RoomVO roomVO = (RoomVO) request.getAttribute("roomVO");
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>房間新增 - addRoom.jsp</title>
+<title>QA修改 </title>
 <%@ include file= "/back-end/framework/include.file" %>
 
 <style>
@@ -60,7 +61,7 @@ th, td {
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>房間新增 - addRoom.jsp</h3>
+				<h3>QA修改 </h3>
 			</td>
 		</tr>
 	</table>
@@ -77,39 +78,41 @@ th, td {
 		</ul>
 	</c:if>
 
-	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/room/room.do" name="form1">
+	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/qaList/qaList.do" name="form1">
 		<table>
-			<tr>
-				<td>房型名稱:</td>
-				<td><input type="TEXT" name="room_type_id" size="45"
-					value="<%=(roomVO == null) ? "2" : roomVO.getRoom_type_id()%>" /></td>
-			</tr>
-			<tr>
-				<td>床位:</td>
-				<td><input type="TEXT" name="qtyofbeds" size="45"
-					value="<%=(roomVO == null) ? "2" : roomVO.getQtyofbeds()%>" /></td>
-			</tr>
-			
-			<tr>
-				<td>上下架狀態:</td>
-				<td><input type="TEXT" name="room_sale_status" size="45"
-					value="<%=(roomVO == null) ? "true" : roomVO.getRoom_sale_status()%>" /></td>
-			</tr>
-			<tr>
-				<td>房間狀態:</td>
-				<td><input type="TEXT" name="room_status" size="45"
-					value="<%=(roomVO == null) ? "1" : roomVO.getRoom_status()%>" /></td>
-			</tr>
+		<tr>
+		<td>QA編號:<font color=red><b>*</b></font></td>
+		<td><%=qaListVO.getQa_id()%></td>
+	</tr>
+	<tr>
+		<td>顯示順序:</td>
+		<td><input type="TEXT" name="no" size="45" value="<%=qaListVO.getNo()%>" /></td>
+	</tr>
+	<tr>
+		<td>問題:</td>
+		<td><input type="TEXT" name="question" size="45"	value="<%=qaListVO.getQuestion()%>" /></td>
+	</tr>
+	<tr>
+		<td>答覆:</td>
+		<td><input type="TEXT" name="answer" size="45"	value="<%=qaListVO.getAnswer()%>" /></td>
+	</tr>
+	<tr>
+		<td>狀態:</td>
+		<td><input type="TEXT" name="status" size="45"	value="<%=qaListVO.getStatus()%>" /></td>
+	</tr>
+	
 
 			
 
 		</table>
-		<br> 
-		<input type="hidden" name="action" value="insert"> 
-		<input type="submit" value="送出新增">
+		<br>
+	<input type="hidden" name="action" value="update">
+	<input type="hidden" name="qa_id" value="<%=qaListVO.getQa_id()%>">
+	<input type="submit" value="送出修改"></FORM>
 	</FORM>
+
 </div>
 <%@ include file= "/back-end/framework/footer.file" %>
-	
+
 </body>
 </html>

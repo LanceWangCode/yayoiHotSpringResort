@@ -1,4 +1,4 @@
-package com.roomtype.model;
+package com.roomType.model;
 
 import java.io.Serializable;
 

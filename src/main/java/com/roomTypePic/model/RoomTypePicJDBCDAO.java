@@ -1,4 +1,4 @@
-package com.roomtype.model;
+package com.roomTypePic.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,31 +8,32 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.room.model.RoomVO;
 
-public class RoomTypeJDBCDAO implements RoomTypeDAO_interface {
+
+
+
+
+
+public class RoomTypePicJDBCDAO implements RoomTypePicDAO_interface {
 	
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/CFA104G1?serverTimezone=Asia/Taipei";
 	String userid = "root";
-	String passwd = "password";
-	
+	String passwd = "qazwsx";
+
 	private static final String INSERT_STMT = 
-		"INSERT INTO CFA104G1.ROOM_TYPE (room_type_name,room_type_amount,room_type_content,room_type_sale_status,room_total_person,room_total_score,room_type_price) "
-		+ "VALUES ( ?, ?, ?, ?, ?, ?, ?)";
+	"INSERT INTO ROOM_TYPE_PIC (room_type_id,room_pic) VALUES (?, ?)";
 	private static final String GET_ALL_STMT = 
-		"SELECT * FROM CFA104G1.ROOM_TYPE order by room_type_id";
+	"SELECT * FROM ROOM_TYPE_PIC order by room_photo_id";
 	private static final String GET_ONE_STMT = 
-		"SELECT * FROM CFA104G1.ROOM_TYPE where room_type_id = ?";
+	"SELECT * FROM ROOM_TYPE_PIC where room_photo_id = ?";
 	private static final String DELETE = 
-		"DELETE FROM CFA104G1.ROOM_TYPE where room_type_id = ?";
+	"DELETE FROM ROOM_TYPE_PIC where room_photo_id = ?";
 	private static final String UPDATE = 
-		"UPDATE CFA104G1.ROOM_TYPE set room_type_id=?, room_type_name=?, room_type_amount=?, room_type_content=?, room_type_sale_status=?, room_total_person=?, room_total_score=?, room_type_price=? where room_type_id = ?";
-		
-	
-	
+	"UPDATE ROOM_TYPE_PIC set room_photo_id=?, room_type_id=?, room_pic=? where room_photo_id = ?";
+
 	@Override
-	public void insert(RoomTypeVO roomTypeVO) {
+	public void insert(RoomTypePicVO room_type_picVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -42,14 +43,9 @@ public class RoomTypeJDBCDAO implements RoomTypeDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(INSERT_STMT);
 
-			pstmt.setString(1, roomTypeVO.getRoom_type_name());
-			pstmt.setInt(2, roomTypeVO.getRoom_type_amount());
-			pstmt.setString(3, roomTypeVO.getRoom_type_content());
-			pstmt.setBoolean(4, roomTypeVO.getRoom_type_sale_status());
-			pstmt.setInt(5, roomTypeVO.getRoom_total_person());
-			pstmt.setInt(6, roomTypeVO.getRoom_total_score());
-			pstmt.setInt(7, roomTypeVO.getRoom_type_price());
-
+		
+			pstmt.setInt(1, room_type_picVO.getRoom_type_id());
+			pstmt.setBytes(2, room_type_picVO.getRoom_pic());
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
@@ -81,7 +77,7 @@ public class RoomTypeJDBCDAO implements RoomTypeDAO_interface {
 	}
 
 	@Override
-	public void update(RoomTypeVO roomTypeVO) {
+	public void update(RoomTypePicVO room_type_picVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -90,16 +86,10 @@ public class RoomTypeJDBCDAO implements RoomTypeDAO_interface {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE);
-
-			pstmt.setInt(1, roomTypeVO.getRoom_type_id() );
-			pstmt.setString(2, roomTypeVO.getRoom_type_name());
-			pstmt.setInt(3, roomTypeVO.getRoom_type_amount());
-			pstmt.setString(4, roomTypeVO.getRoom_type_content());
-			pstmt.setBoolean(5, roomTypeVO.getRoom_type_sale_status());
-			pstmt.setInt(6, roomTypeVO.getRoom_total_person());
-			pstmt.setInt(7, roomTypeVO.getRoom_total_score());
-			pstmt.setInt(8, roomTypeVO.getRoom_type_price());
-			pstmt.setInt(9, roomTypeVO.getRoom_type_id() );
+			
+			pstmt.setInt(1, room_type_picVO.getRoom_photo_id());
+			pstmt.setInt(2, room_type_picVO.getRoom_type_id());
+			pstmt.setBytes(3, room_type_picVO.getRoom_pic());
 
 			pstmt.executeUpdate();
 
@@ -128,11 +118,12 @@ public class RoomTypeJDBCDAO implements RoomTypeDAO_interface {
 				}
 			}
 		}
-		
+	
 	}
 
 	@Override
-	public void delete(Integer room_type_id) {
+	public void delete(Integer room_photo_id) {
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -142,7 +133,7 @@ public class RoomTypeJDBCDAO implements RoomTypeDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(DELETE);
 
-			pstmt.setInt(1, room_type_id );
+			pstmt.setInt(1, room_photo_id);
 
 			pstmt.executeUpdate();
 
@@ -175,8 +166,8 @@ public class RoomTypeJDBCDAO implements RoomTypeDAO_interface {
 	}
 
 	@Override
-	public RoomTypeVO findByPK(Integer room_type_id) {
-		RoomTypeVO roomTypeVO = null;
+	public RoomTypePicVO findByPrimaryKey(Integer room_photo_id) {
+		RoomTypePicVO room_type_picVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -187,21 +178,17 @@ public class RoomTypeJDBCDAO implements RoomTypeDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
-			pstmt.setInt(1, room_type_id);
+			pstmt.setInt(1, room_photo_id);
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo �]�٬� Domain objects
-				roomTypeVO = new RoomTypeVO();
-				roomTypeVO.setRoom_type_id(rs.getInt("room_type_id"));
-				roomTypeVO.setRoom_type_name(rs.getString("room_type_name"));
-				roomTypeVO.setRoom_type_amount(rs.getInt("room_type_amount"));
-				roomTypeVO.setRoom_type_content(rs.getString("room_type_content"));
-				roomTypeVO.setRoom_type_sale_status(rs.getBoolean("room_type_sale_status"));
-				roomTypeVO.setRoom_total_person(rs.getInt("room_total_person"));
-				roomTypeVO.setRoom_total_score(rs.getInt("room_total_score"));
-				roomTypeVO.setRoom_type_price(rs.getInt("room_type_price"));
+			
+				room_type_picVO = new RoomTypePicVO();
+				room_type_picVO.setRoom_photo_id(rs.getInt("room_photo_id"));
+				room_type_picVO.setRoom_type_id(rs.getInt("room_type_id"));
+				room_type_picVO.setRoom_pic(rs.getBytes("room_pic"));
+				
 			}
 
 			// Handle any driver errors
@@ -236,13 +223,13 @@ public class RoomTypeJDBCDAO implements RoomTypeDAO_interface {
 				}
 			}
 		}
-		return roomTypeVO;
+		return room_type_picVO;
 	}
 
 	@Override
-	public List<RoomTypeVO> getAll() {
-		List<RoomTypeVO> list = new ArrayList<RoomTypeVO>();
-		RoomTypeVO roomTypeVO = null;
+	public List<RoomTypePicVO> getAll() {
+		List<RoomTypePicVO> list = new ArrayList<RoomTypePicVO>();
+		RoomTypePicVO room_type_picVO = null;
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -256,17 +243,11 @@ public class RoomTypeJDBCDAO implements RoomTypeDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO �]�٬� Domain objects
-				roomTypeVO = new RoomTypeVO();
-				roomTypeVO.setRoom_type_id(rs.getInt("room_type_id"));
-				roomTypeVO.setRoom_type_name(rs.getString("room_type_name"));
-				roomTypeVO.setRoom_type_amount(rs.getInt("room_type_amount"));
-				roomTypeVO.setRoom_type_content(rs.getString("room_type_content"));
-				roomTypeVO.setRoom_type_sale_status(rs.getBoolean("room_type_sale_status"));
-				roomTypeVO.setRoom_total_person(rs.getInt("room_total_person"));
-				roomTypeVO.setRoom_total_score(rs.getInt("room_total_score"));
-				roomTypeVO.setRoom_type_price(rs.getInt("room_type_price"));
-				list.add(roomTypeVO); // Store the row in the list
+				room_type_picVO = new RoomTypePicVO();
+				room_type_picVO.setRoom_photo_id(rs.getInt("room_photo_id"));
+				room_type_picVO.setRoom_type_id(rs.getInt("room_type_id"));
+				room_type_picVO.setRoom_pic(rs.getBytes("room_pic"));
+				list.add(room_type_picVO); // Store the row in the list
 			}
 
 			// Handle any driver errors
@@ -303,7 +284,24 @@ public class RoomTypeJDBCDAO implements RoomTypeDAO_interface {
 		}
 		return list;
 	}
-	
+
+	@Override
+	public void deleteByRoomTypeId(Integer room_type_id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<RoomTypePicVO> findByFK(Integer room_photo_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public RoomTypePicVO findByFKreturnVO(Integer room_type_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	

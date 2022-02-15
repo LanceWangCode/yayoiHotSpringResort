@@ -29,14 +29,64 @@
     <url-pattern>/emp/emp.do</url-pattern>
   </servlet-mapping>
 
-	<servlet>
-		<servlet-name>NameServlet</servlet-name>
-		<servlet-class>com.chat.controller.NameServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>NameServlet</servlet-name>
-		<url-pattern>/chat.do</url-pattern>
-	</servlet-mapping>
+  <servlet>
+	<servlet-name>NameServlet</servlet-name>
+	<servlet-class>com.chat.controller.NameServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+	<servlet-name>NameServlet</servlet-name>
+	<url-pattern>/chat.do</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>RoomServlet</servlet-name>
+    <servlet-class>com.room.controller.RoomServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RoomServlet</servlet-name>
+    <url-pattern>/room/room.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>RoomTypeServlet</servlet-name>
+    <servlet-class>com.roomType.controller.RoomTypeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RoomTypeServlet</servlet-name>
+    <url-pattern>/roomType/roomType.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>RoomTypePicReader</servlet-name>
+    <servlet-class>com.roomTypePic.controller.RoomTypePicReader</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RoomTypePicReader</servlet-name>
+    <url-pattern>/roomType/roomTypePic.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>QAListServlet</servlet-name>
+    <servlet-class>com.qalist.controller.QAListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QAListServlet</servlet-name>
+    <url-pattern>/qaList/qaList.do</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>RoomTypePicReaderforid</servlet-name>
+    <servlet-class>com.roomTypePic.controller.RoomTypePicReaderforid</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RoomTypePicReaderforid</servlet-name>
+    <url-pattern>/roomType/roomTypePicId.do</url-pattern>
+  </servlet-mapping>
+     <servlet>
+    <servlet-name>RoomTypePicServlet</servlet-name>
+    <servlet-class>com.roomTypePic.controller.RoomTypePicServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RoomTypePicServlet</servlet-name>
+    <url-pattern>/roomType/roomTypePicServlet.do</url-pattern>
+  </servlet-mapping>
+
   
   <filter>
     <filter-name>loginFilter</filter-name>

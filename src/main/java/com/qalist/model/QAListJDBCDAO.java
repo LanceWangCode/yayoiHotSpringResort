@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.roomtype.model.RoomTypeVO;
 
 public class QAListJDBCDAO implements QAListDAO_interface {
 	
@@ -18,8 +17,8 @@ public class QAListJDBCDAO implements QAListDAO_interface {
 	String passwd = "password";
 	
 	private static final String INSERT_STMT = 
-			"INSERT INTO CFA104G1.QA_LIST (qa_id,no,question,answer,status) "
-			+ "VALUES (?, ?, ?, ?, ?)";
+			"INSERT INTO CFA104G1.QA_LIST (,no,question,answer,status) "
+			+ "VALUES ( ?, ?, ?, ?)";
 		private static final String GET_ALL_STMT = 
 			"SELECT * FROM CFA104G1.QA_LIST order by qa_id";
 		private static final String GET_ONE_STMT = 
@@ -41,11 +40,11 @@ public class QAListJDBCDAO implements QAListDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(INSERT_STMT);
 
-			pstmt.setInt(1, qwListVO.getQa_id() );
-			pstmt.setInt(2, qwListVO.getNo());
-			pstmt.setString(3, qwListVO.getQuestion());
-			pstmt.setString(4, qwListVO.getAnswer());
-			pstmt.setInt(5, qwListVO.getStatus());
+			
+			pstmt.setInt(1, qwListVO.getNo());
+			pstmt.setString(2, qwListVO.getQuestion());
+			pstmt.setString(3, qwListVO.getAnswer());
+			pstmt.setBoolean(4, qwListVO.getStatus());
 
 			pstmt.executeUpdate();
 
@@ -92,7 +91,7 @@ public class QAListJDBCDAO implements QAListDAO_interface {
 			pstmt.setInt(2, qwListVO.getNo());
 			pstmt.setString(3, qwListVO.getQuestion());
 			pstmt.setString(4, qwListVO.getAnswer());
-			pstmt.setInt(5, qwListVO.getStatus());
+			pstmt.setBoolean(5, qwListVO.getStatus());
 			pstmt.setInt(6, qwListVO.getQa_id());
 			pstmt.executeUpdate();
 
@@ -185,13 +184,13 @@ public class QAListJDBCDAO implements QAListDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo ¤]ºÙ¬° Domain objects
+				// empVo ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				qaListVO = new QAListVO();
 				qaListVO.setQa_id(rs.getInt("qa_id"));
 				qaListVO.setNo(rs.getInt("no"));
 				qaListVO.setQuestion(rs.getString("question"));
 				qaListVO.setAnswer(rs.getString("answer"));
-				qaListVO.setStatus(rs.getInt("status"));
+				qaListVO.setStatus(rs.getBoolean("status"));
 			}
 
 			// Handle any driver errors
@@ -246,14 +245,14 @@ public class QAListJDBCDAO implements QAListDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO ¤]ºÙ¬° Domain objects
+				// empVO ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				qaListVO = new QAListVO();
 				qaListVO = new QAListVO();
 				qaListVO.setQa_id(rs.getInt("qa_id"));
 				qaListVO.setNo(rs.getInt("no"));
 				qaListVO.setQuestion(rs.getString("question"));
 				qaListVO.setAnswer(rs.getString("answer"));
-				qaListVO.setStatus(rs.getInt("status"));
+				qaListVO.setStatus(rs.getBoolean("status"));
 				list.add(qaListVO); // Store the row in the list
 			}
 

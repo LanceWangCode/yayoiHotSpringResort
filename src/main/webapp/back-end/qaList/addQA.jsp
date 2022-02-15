@@ -1,10 +1,11 @@
+<%@page import="com.qalist.model.QAListVO"%>
 <%@page import="com.room.model.RoomVO"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.room.model.*"%>
 
 <%
-RoomVO roomVO = (RoomVO) request.getAttribute("roomVO");
+QAListVO qaListVO = (QAListVO) request.getAttribute("qaListVO");
 %>
 
 <!-- 等另一遍DAO出來再用 -->
@@ -13,7 +14,7 @@ RoomVO roomVO = (RoomVO) request.getAttribute("roomVO");
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>房間新增 - addRoom.jsp</title>
+<title>QA新增 </title>
 <%@ include file= "/back-end/framework/include.file" %>
 
 <style>
@@ -60,7 +61,7 @@ th, td {
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>房間新增 - addRoom.jsp</h3>
+				<h3>QA新增 </h3>
 			</td>
 		</tr>
 	</table>
@@ -77,28 +78,28 @@ th, td {
 		</ul>
 	</c:if>
 
-	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/room/room.do" name="form1">
+	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/qaList/qaList.do" name="form1">
 		<table>
 			<tr>
-				<td>房型名稱:</td>
-				<td><input type="TEXT" name="room_type_id" size="45"
-					value="<%=(roomVO == null) ? "2" : roomVO.getRoom_type_id()%>" /></td>
+				<td>顯示順序:</td>
+				<td><input type="TEXT" name="no" size="45"
+					value="<%=(qaListVO == null) ? "5" : qaListVO.getNo()%>" /></td>
 			</tr>
 			<tr>
-				<td>床位:</td>
-				<td><input type="TEXT" name="qtyofbeds" size="45"
-					value="<%=(roomVO == null) ? "2" : roomVO.getQtyofbeds()%>" /></td>
+				<td>問題:</td>
+				<td><input type="TEXT" name="question" size="45"
+					value="<%=(qaListVO == null) ? "問題?" : qaListVO.getQuestion() %>" /></td>
 			</tr>
 			
 			<tr>
-				<td>上下架狀態:</td>
-				<td><input type="TEXT" name="room_sale_status" size="45"
-					value="<%=(roomVO == null) ? "true" : roomVO.getRoom_sale_status()%>" /></td>
+				<td>答覆:</td>
+				<td><input type="TEXT" name="answer" size="45"
+					value="<%=(qaListVO == null) ? "答覆?" : qaListVO.getAnswer()%>" /></td>
 			</tr>
 			<tr>
-				<td>房間狀態:</td>
-				<td><input type="TEXT" name="room_status" size="45"
-					value="<%=(roomVO == null) ? "1" : roomVO.getRoom_status()%>" /></td>
+				<td>狀態:</td>
+				<td><input type="TEXT" name="status" size="45"
+					value="<%=(qaListVO == null) ? "0" : qaListVO.getStatus()%>" /></td>
 			</tr>
 
 			
@@ -110,6 +111,5 @@ th, td {
 	</FORM>
 </div>
 <%@ include file= "/back-end/framework/footer.file" %>
-	
 </body>
 </html>

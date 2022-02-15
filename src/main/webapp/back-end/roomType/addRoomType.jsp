@@ -1,10 +1,11 @@
 <%@page import="com.room.model.RoomVO"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.room.model.*"%>
+<%@ page import="com.roomType.model.*"%>
+<%@ page import="com.roomTypePic.model.*"%>
 
 <%
-RoomVO roomVO = (RoomVO) request.getAttribute("roomVO");
+RoomTypeVO roomTypeVO = (RoomTypeVO) request.getAttribute("roomTypeVO");
 %>
 
 <!-- 等另一遍DAO出來再用 -->
@@ -13,7 +14,7 @@ RoomVO roomVO = (RoomVO) request.getAttribute("roomVO");
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>房間新增 - addRoom.jsp</title>
+<title>房型新增</title>
 <%@ include file= "/back-end/framework/include.file" %>
 
 <style>
@@ -60,7 +61,7 @@ th, td {
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>房間新增 - addRoom.jsp</h3>
+				<h3>房型新增 </h3>
 			</td>
 		</tr>
 	</table>
@@ -77,28 +78,37 @@ th, td {
 		</ul>
 	</c:if>
 
-	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/room/room.do" name="form1">
+	<FORM METHOD="post" enctype="multipart/form-data" ACTION="<%=request.getContextPath()%>/roomType/roomType.do" name="form1">
 		<table>
 			<tr>
 				<td>房型名稱:</td>
-				<td><input type="TEXT" name="room_type_id" size="45"
-					value="<%=(roomVO == null) ? "2" : roomVO.getRoom_type_id()%>" /></td>
+				<td><input type="TEXT" name=room_type_name size="45"
+					value="<%=(roomTypeVO == null) ? "雙人房" : ""%>" /></td>
 			</tr>
 			<tr>
-				<td>床位:</td>
-				<td><input type="TEXT" name="qtyofbeds" size="45"
-					value="<%=(roomVO == null) ? "2" : roomVO.getQtyofbeds()%>" /></td>
+				<td>房型簡介:</td>
+				<td><input type="TEXT" name="room_type_content" size="45"
+					value="<%=(roomTypeVO == null) ? "請輸入簡介" : ""%>" /></td>
 			</tr>
 			
 			<tr>
-				<td>上下架狀態:</td>
-				<td><input type="TEXT" name="room_sale_status" size="45"
-					value="<%=(roomVO == null) ? "true" : roomVO.getRoom_sale_status()%>" /></td>
+				<td>房型價格:</td>
+				<td><input type="TEXT" name="room_type_price" size="45"
+					value="<%=(roomTypeVO == null) ? "5000" : ""%>" /></td>
 			</tr>
 			<tr>
-				<td>房間狀態:</td>
-				<td><input type="TEXT" name="room_status" size="45"
-					value="<%=(roomVO == null) ? "1" : roomVO.getRoom_status()%>" /></td>
+				<td>上下架狀態:</td>
+				<td><input type="TEXT" name="room_type_sale_status" size="45"
+					value="<%=(roomTypeVO == null) ? "1" : ""%>" /></td>
+			</tr>
+			<tr>
+				<td>房型數量:</td>
+				<td><input type="TEXT" name="room_type_amount" size="45"
+					value="<%=(roomTypeVO == null) ? "10" : ""%>" /></td>
+			</tr>
+			<tr>
+				<td>房型圖片</td>
+				<td><input type="file" name="room_type_pic" size="50" /></td>
 			</tr>
 
 			

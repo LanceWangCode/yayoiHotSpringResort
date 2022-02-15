@@ -10,6 +10,7 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <title>房間資料修改 - update_room.jsp</title>
+<%@ include file= "/back-end/framework/include.file" %>
 
 <style>
   table#table-1 {
@@ -45,6 +46,8 @@
 
 </head>
 <body bgcolor='white'>
+<%@ include file= "/back-end/framework/header.file" %>
+<div class="container">            
 
 <table id="table-1">
 	<tr><td>
@@ -98,5 +101,9 @@
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="room_id" value="<%=roomVO.getRoom_id()%>">
 <input type="submit" value="送出修改"></FORM>
+
+</div>
+<%@ include file= "/back-end/framework/footer.file" %>
+
 </body>
 </html>
