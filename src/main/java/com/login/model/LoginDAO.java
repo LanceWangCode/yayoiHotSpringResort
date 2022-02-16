@@ -15,7 +15,7 @@ public class LoginDAO implements LoginDAO_interface {
 	private static final String PWD = "12345678";
 	
 	
-	//// ¤@­ÓÀ³¥Îµ{¦¡¤¤,°w¹ï¤@­Ó¸ê®Æ®w ,¦@¥Î¤@­ÓDataSource§Y¥i
+	//// ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½Îµ{ï¿½ï¿½ï¿½ï¿½,ï¿½wï¿½ï¿½@ï¿½Ó¸ï¿½Æ®w ,ï¿½@ï¿½Î¤@ï¿½ï¿½DataSourceï¿½Yï¿½i
 	//private static DataSource ds = null;
 	//static {
 	//	try {
@@ -35,7 +35,7 @@ public class LoginDAO implements LoginDAO_interface {
 
 		//try {
 		
-		String sql = "select * from cfa104g1db.EMPLYEE where EMP_ACCOUNT = ?  and EMP_PASSWORD = ?";
+		String sql = "select * from EMPLYEE where EMP_ACCOUNT = ?  and EMP_PASSWORD = ?";
 		try (
 			Connection con = DriverManager.getConnection(URL, USER, PWD);
 			PreparedStatement pstmt = con.prepareStatement(sql);
