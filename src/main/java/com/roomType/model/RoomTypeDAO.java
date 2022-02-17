@@ -28,10 +28,12 @@ public class RoomTypeDAO implements RoomTypeDAO_interface {
 
 	private static final String INSERT_STMT = "INSERT INTO ROOM_TYPE (room_type_name,room_type_amount,room_type_content,room_type_sale_status,room_total_person,room_total_score,room_type_price) "
 			+ "VALUES ( ?, ?, ?, ?, ?, ?, ?)";
+
 	private static final String GET_ALL_STMT = "SELECT * FROM ROOM_TYPE order by room_type_id";
 	private static final String GET_ONE_STMT = "SELECT * FROM ROOM_TYPE where room_type_id = ?";
 	private static final String DELETE = "DELETE FROM ROOM_TYPE where room_type_id = ?";
 	private static final String UPDATE = "UPDATE ROOM_TYPE set room_type_id=?, room_type_name=?, room_type_amount=?, room_type_content=?, room_type_sale_status=?, room_total_person=?, room_total_score=?, room_type_price=? where room_type_id = ?";
+
 
 	@Override
 	public int insert(RoomTypeVO roomTypeVO) {
@@ -172,7 +174,7 @@ public class RoomTypeDAO implements RoomTypeDAO_interface {
 	}
 
 	@Override
-	public RoomTypeVO findByPK(Integer room_id) {
+	public RoomTypeVO findByPK(Integer room__type_id) {
 		RoomTypeVO roomTypeVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -183,7 +185,7 @@ public class RoomTypeDAO implements RoomTypeDAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
-			pstmt.setInt(1, room_id);
+			pstmt.setInt(1, room__type_id);
 
 			rs = pstmt.executeQuery();
 
@@ -289,6 +291,7 @@ public class RoomTypeDAO implements RoomTypeDAO_interface {
 		}
 		return list;
 	}
+	
 
 	
 }

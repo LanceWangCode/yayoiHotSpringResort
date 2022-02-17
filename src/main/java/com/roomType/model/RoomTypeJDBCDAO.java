@@ -13,16 +13,16 @@ import com.room.model.RoomVO;
 public class RoomTypeJDBCDAO implements RoomTypeDAO_interface {
 
 	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/cfa104g1?serverTimezone=Asia/Taipei";
+	String url = "jdbc:mysql://localhost:3306/CFA104G1?serverTimezone=Asia/Taipei";
 	String userid = "root";
 	String passwd = "password";
 
-	private static final String INSERT_STMT = "INSERT INTO ROOM_TYPE (room_type_name,room_type_amount,room_type_content,room_type_sale_status,room_total_person,room_total_score,room_type_price) "
+	private static final String INSERT_STMT = "INSERT INTO CFA104G1.ROOM_TYPE (room_type_name,room_type_amount,room_type_content,room_type_sale_status,room_total_person,room_total_score,room_type_price) "
 			+ "VALUES ( ?, ?, ?, ?, ?, ?, ?)";
-	private static final String GET_ALL_STMT = "SELECT * FROM ROOM_TYPE order by room_type_id";
-	private static final String GET_ONE_STMT = "SELECT * FROM ROOM_TYPE where room_type_id = ?";
-	private static final String DELETE = "DELETE FROM ROOM_TYPE where room_type_id = ?";
-	private static final String UPDATE = "UPDATE ROOM_TYPE set room_type_id=?, room_type_name=?, room_type_amount=?, room_type_content=?, room_type_sale_status=?, room_total_person=?, room_total_score=?, room_type_price=? where room_type_id = ?";
+	private static final String GET_ALL_STMT = "SELECT * FROM CFA104G1.ROOM_TYPE order by room_type_id";
+	private static final String GET_ONE_STMT = "SELECT * FROM CFA104G1.ROOM_TYPE where room_type_id = ?";
+	private static final String DELETE = "DELETE FROM CFA104G1.ROOM_TYPE where room_type_id = ?";
+	private static final String UPDATE = "UPDATE CFA104G1.ROOM_TYPE set room_type_id=?, room_type_name=?, room_type_amount=?, room_type_content=?, room_type_sale_status=?, room_total_person=?, room_total_score=?, room_type_price=? where room_type_id = ?";
 
 	@Override
 	public int insert(RoomTypeVO roomTypeVO) {

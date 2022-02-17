@@ -70,6 +70,7 @@ public class RoomTypePicReader extends HttpServlet {
 			Context ctx = new javax.naming.InitialContext();
 			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/CFA104G1");
 			con = ds.getConnection();
+			System.out.println(con);
 		} catch (NamingException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

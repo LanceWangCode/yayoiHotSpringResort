@@ -26,6 +26,7 @@ pageContext.setAttribute("list", list);
 
     <script src="https://www.ibest.com.tw/database/function/jquery-1.12.4.min.js"></script>
     <!--inline ajax_function-->
+    
 <%@ include file= "/front-end/framework/include.file" %>
 
     <!-- 預設CSS -->

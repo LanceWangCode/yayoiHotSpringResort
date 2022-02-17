@@ -84,9 +84,7 @@ public class RoomServlet extends HttpServlet {
 				}
 
 				String room_guest_name = req.getParameter("room_guest_name");
-				if (room_guest_name == null || room_guest_name.trim().length() == 0) {
-					errorMsgs.add("房客姓名: 請勿空白");
-				}
+				
 
 				Boolean room_sale_status = null;
 				try {
@@ -116,7 +114,7 @@ public class RoomServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("roomVO", roomVO); // 含有輸入格式錯誤的empVO物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/room/listAllRoom.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/room/updateRoom.jsp");
 					failureView.forward(req, res);
 					return; // 程式中斷
 				}

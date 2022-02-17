@@ -21,12 +21,12 @@ public class RoomDAO implements RoomDAO_interface {
 		}
 	}
 
-	private static final String INSERT_STMT = "INSERT INTO CFA104G1.ROOM (room_type_id,qtyofbeds,room_guest_name,room_sale_status,room_status) "
+	private static final String INSERT_STMT = "INSERT INTO ROOM (room_type_id,qtyofbeds,room_guest_name,room_sale_status,room_status) "
 			+ "VALUES (?, ?, ?, ?, ?)";
-	private static final String GET_ALL_STMT = "SELECT room_id,room_type_id,qtyofbeds,room_guest_name,room_sale_status,room_status FROM CFA104G1.ROOM order by room_id";
-	private static final String GET_ONE_STMT = "SELECT room_id,room_type_id,qtyofbeds,room_guest_name,room_sale_status,room_status FROM CFA104G1.ROOM where room_id = ?";
-	private static final String DELETE = "DELETE FROM CFA104G1.ROOM where room_id = ?";
-	private static final String UPDATE = "UPDATE CFA104G1.ROOM set room_id=?, room_type_id=?, qtyofbeds=?, room_guest_name=?, room_sale_status=?, room_status=? where room_id = ?";
+	private static final String GET_ALL_STMT = "SELECT room_id,room_type_id,qtyofbeds,room_guest_name,room_sale_status,room_status FROM ROOM order by room_id";
+	private static final String GET_ONE_STMT = "SELECT room_id,room_type_id,qtyofbeds,room_guest_name,room_sale_status,room_status FROM ROOM where room_id = ?";
+	private static final String DELETE = "DELETE FROM ROOM where room_id = ?";
+	private static final String UPDATE = "UPDATE ROOM set room_id=?, room_type_id=?, qtyofbeds=?, room_guest_name=?, room_sale_status=?, room_status=? where room_id = ?";
 
 	@Override
 	public void insert(RoomVO roomVo) {

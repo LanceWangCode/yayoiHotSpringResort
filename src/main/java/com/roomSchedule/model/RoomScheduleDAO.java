@@ -1,4 +1,4 @@
-package com.roomTypePic.model;
+package com.roomSchedule.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,52 +8,58 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 
 
 
 
-
-public class RoomTypePicJDBCDAO implements RoomTypePicDAO_interface {
+public class RoomScheduleDAO implements RoomScheduleDAO_interface {
 	
-	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/db01?serverTimezone=Asia/Taipei";
-	String userid = "root";
-	String passwd = "qazwsx";
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/CFA104G1");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
 
 	private static final String INSERT_STMT = 
-	"INSERT INTO CFA104G1.ROOM_TYPE_PIC (room_type_id,room_pic) VALUES (?, ?)";
+	"INSERT INTO ROOM_SCHEDULE (room_type_id,room_schedule_date,room_amount,room_rsv_booked) VALUES (?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = 
-	"SELECT * FROM CFA104G1.ROOM_TYPE_PIC order by room_photo_id";
+	"SELECT room_schedule_id,room_type_id,room_schedule_date,room_amount,room_rsv_booked FROM ROOM_SCHEDULE order by room_schedule_id";
 	private static final String GET_ONE_STMT = 
-	"SELECT * FROM CFA104G1.ROOM_TYPE_PIC where room_photo_id = ?";
+	"SELECT room_schedule_id,room_type_id,room_schedule_date,room_amount,room_rsv_booked FROM ROOM_SCHEDULE where room_schedule_id = ?";
 	private static final String DELETE = 
-	"DELETE FROM ROOM_TYPE_PIC where room_photo_id = ?";
+	"DELETE FROM ROOM_SCHEDULE where room_schedule_id = ?";
 	private static final String UPDATE = 
-	"UPDATE ROOM_TYPE_PIC set room_photo_id=?, room_type_id=?, room_pic=? where room_photo_id = ?";
+	"UPDATE ROOM_SCHEDULE set room_schedule_id=?,room_type_id=?, room_schedule_date=?, room_amount=?, room_rsv_booked=? where room_schedule_id=?";
 
 	@Override
-	public void insert(RoomTypePicVO room_type_picVO) {
+	public void insert(RoomScheduleVO room_scheduleVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 		
-			pstmt.setInt(1, room_type_picVO.getRoom_type_id());
-			pstmt.setBytes(2, room_type_picVO.getRoom_pic());
+			pstmt.setInt(1, room_scheduleVO.getRoom_type_id());
+			pstmt.setDate(2, room_scheduleVO.getRoom_schedule_date());
+			pstmt.setInt(3, room_scheduleVO.getRoom_amount());
+			pstmt.setInt(4, room_scheduleVO.getRoom_rsv_booked());
+
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
-		} catch (SQLException se) {
+		}  catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
 			// Clean up JDBC resources
@@ -77,27 +83,25 @@ public class RoomTypePicJDBCDAO implements RoomTypePicDAO_interface {
 	}
 
 	@Override
-	public void update(RoomTypePicVO room_type_picVO) {
+	public void update(RoomScheduleVO room_scheduleVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 			
-			pstmt.setInt(1, room_type_picVO.getRoom_photo_id());
-			pstmt.setInt(2, room_type_picVO.getRoom_type_id());
-			pstmt.setBytes(3, room_type_picVO.getRoom_pic());
+			
+			pstmt.setInt(1, room_scheduleVO.getRoom_type_id());
+			pstmt.setDate(2, room_scheduleVO.getRoom_schedule_date());
+			pstmt.setInt(3, room_scheduleVO.getRoom_amount());
+			pstmt.setInt(4, room_scheduleVO.getRoom_rsv_booked());
+			pstmt.setInt(5, room_scheduleVO.getRoom_schedule_id());
 
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -122,27 +126,21 @@ public class RoomTypePicJDBCDAO implements RoomTypePicDAO_interface {
 	}
 
 	@Override
-	public void delete(Integer room_photo_id) {
+	public void delete(Integer room_schedule_id) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
-
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 
-			pstmt.setInt(1, room_photo_id);
+			pstmt.setInt(1, room_schedule_id);
 
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
-		} catch (SQLException se) {
+		}  catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
 			// Clean up JDBC resources
@@ -166,37 +164,32 @@ public class RoomTypePicJDBCDAO implements RoomTypePicDAO_interface {
 	}
 
 	@Override
-	public RoomTypePicVO findByPrimaryKey(Integer room_photo_id) {
-		RoomTypePicVO room_type_picVO = null;
+	public RoomScheduleVO findByPrimaryKey(Integer room_schedule_id) {
+		RoomScheduleVO room_scheduleVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		try {
-
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
-			pstmt.setInt(1, room_photo_id);
+			pstmt.setInt(1, room_schedule_id);
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-			
-				room_type_picVO = new RoomTypePicVO();
-				room_type_picVO.setRoom_photo_id(rs.getInt("room_photo_id"));
-				room_type_picVO.setRoom_type_id(rs.getInt("room_type_id"));
-				room_type_picVO.setRoom_pic(rs.getBytes("room_pic"));
-				
+				room_scheduleVO = new RoomScheduleVO();
+				room_scheduleVO.setRoom_schedule_id(rs.getInt("room_schedule_id"));
+				room_scheduleVO.setRoom_type_id(rs.getInt("room_type_id"));
+				room_scheduleVO.setRoom_schedule_date(rs.getDate("room_schedule_date"));
+				room_scheduleVO.setRoom_amount(rs.getInt("room_amount"));
+				room_scheduleVO.setRoom_rsv_booked(rs.getInt("room_rsv_booked"));
+	
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
-		} catch (SQLException se) {
+		}  catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
 			// Clean up JDBC resources
@@ -223,13 +216,13 @@ public class RoomTypePicJDBCDAO implements RoomTypePicDAO_interface {
 				}
 			}
 		}
-		return room_type_picVO;
+		return room_scheduleVO;
 	}
 
 	@Override
-	public List<RoomTypePicVO> getAll() {
-		List<RoomTypePicVO> list = new ArrayList<RoomTypePicVO>();
-		RoomTypePicVO room_type_picVO = null;
+	public List<RoomScheduleVO> getAll() {
+		List<RoomScheduleVO> list = new ArrayList<RoomScheduleVO>();
+		RoomScheduleVO room_scheduleVO = null;
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -237,25 +230,22 @@ public class RoomTypePicJDBCDAO implements RoomTypePicDAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				room_type_picVO = new RoomTypePicVO();
-				room_type_picVO.setRoom_photo_id(rs.getInt("room_photo_id"));
-				room_type_picVO.setRoom_type_id(rs.getInt("room_type_id"));
-				room_type_picVO.setRoom_pic(rs.getBytes("room_pic"));
-				list.add(room_type_picVO); // Store the row in the list
+				room_scheduleVO = new RoomScheduleVO();
+				room_scheduleVO.setRoom_schedule_id(rs.getInt("room_schedule_id"));
+				room_scheduleVO.setRoom_type_id(rs.getInt("room_type_id"));
+				room_scheduleVO.setRoom_schedule_date(rs.getDate("room_schedule_date"));
+				room_scheduleVO.setRoom_amount(rs.getInt("room_amount"));
+				room_scheduleVO.setRoom_rsv_booked(rs.getInt("room_rsv_booked"));
+				list.add(room_scheduleVO); // Store the row in the list
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
-		} catch (SQLException se) {
+		}  catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
 			// Clean up JDBC resources
@@ -283,24 +273,6 @@ public class RoomTypePicJDBCDAO implements RoomTypePicDAO_interface {
 			}
 		}
 		return list;
-	}
-
-	@Override
-	public void deleteByRoomTypeId(Integer room_type_id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public List<RoomTypePicVO> findByFK(Integer room_photo_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public RoomTypePicVO findByFKreturnVO(Integer room_type_id) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 	
