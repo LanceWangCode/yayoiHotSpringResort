@@ -12,7 +12,7 @@ import java.util.List;
 
 public class MemJDBCDAO implements MemDAO_interface{
 	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/cfa104g1db?serverTimezone=Asia/Taipei";
+	String url = "jdbc:mysql://localhost:3306/CFA104G1?serverTimezone=Asia/Taipei";
 	String userid = "root";
 	String passwd = "password";
 	
@@ -25,7 +25,7 @@ public class MemJDBCDAO implements MemDAO_interface{
 	private static final String GET_ONE_STMT_EMAIL = 
 			"SELECT MEM_ID, MEM_EMAIL, MEM_PASSWORD, MEM_NAME, MEM_PHONE, MEM_ADDRESS FROM MEM WHERE MEM_EMAIL = ?";
 	private static final String GET_ONE_STMT_EMAIL_PASSWORD = 
-			"SELECT MEM_ID, MEM_EMAIL, MEM_PASSWORD, MEM_NAME, MEM_PHONE, MEM_ADDRESS FROM MEM WHERE MEM_EMAIL = ? AND MEM_PASSWORD = ?";
+			"SELECT MEM_ID, MEM_EMAIL, MEM_PASSWORD, MEM_NAME, MEM_PHONE, MEM_ADDRESS FROM MEM WHERE MEM_EMAIL = binary(?) AND MEM_PASSWORD = binary(?)";
 	private static final String GET_ONE_STMT_ID_PASSWORD = 
 			"SELECT MEM_ID, MEM_EMAIL, MEM_PASSWORD, MEM_NAME, MEM_PHONE, MEM_ADDRESS FROM MEM WHERE MEM_ID = ? AND MEM_PASSWORD = ?";
 	private static final String UPDATE = 
@@ -35,9 +35,11 @@ public class MemJDBCDAO implements MemDAO_interface{
 	private static final String UPDATE_PIC = 
 			"UPDATE MEM SET MEM_PIC=? WHERE MEM_EMAIL = ?";
 	private static final String UPDATE_STUTAS = 
-			"UPDATE MEM SET MEM_STATUS=? WHERE MEM_ID = ?";
+			"UPDATE MEM SET MEM_STATUS=? WHERE MEM_EMAIL = ?";
 	private static final String UPDATE_PWD = 
 			"UPDATE MEM SET MEM_PASSWORD=? WHERE MEM_ID = ?";
+	private static final String RESET_PWD = 
+			"UPDATE MEM SET MEM_PASSWORD=? WHERE MEM_EMAIL = ?";
 	
 	@Override
 	public void insert(MemVO memVO) {
@@ -268,6 +270,48 @@ public class MemJDBCDAO implements MemDAO_interface{
 	}
 
 	@Override
+	public void resetPWD(MemVO memVO) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+
+			Class.forName(driver);
+			conn = DriverManager.getConnection(url, userid, passwd);
+			pstmt = conn.prepareStatement(RESET_PWD);
+			pstmt.setString(1, memVO.getMem_password());
+			pstmt.setString(2, memVO.getMem_email());
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}	
+		
+	}
+
+	@Override
 	public void updateStatus(MemVO memVO) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -277,9 +321,9 @@ public class MemJDBCDAO implements MemDAO_interface{
 			Class.forName(driver);
 			conn = DriverManager.getConnection(url, userid, passwd);
 			pstmt = conn.prepareStatement(UPDATE_STUTAS);
-			pstmt.setInt(1, memVO.getMem_status());
+			pstmt.setByte(1, memVO.getMem_status());
 //			System.out.println(memVO.getMem_status());
-			pstmt.setInt(2, memVO.getMem_id());
+			pstmt.setString(2, memVO.getMem_email());
 //			System.out.println(memVO.getMem_id());
 			pstmt.executeUpdate();
 
@@ -705,7 +749,7 @@ public class MemJDBCDAO implements MemDAO_interface{
 //		System.out.println("---------------------");
 		
 		// 帳號密碼查詢
-//		MemVO memVO8 = dao.selectForLogin("admin@tibame.com.tw", "12345678");
+//		MemVO memVO8 = dao.selectForLogin("test5@tibame.com.tw", "1234qwer");
 //		System.out.print(memVO8.getMem_id() + ",");
 //		System.out.print(memVO8.getMem_email() + ",");
 //		System.out.print(memVO8.getMem_password()+ ",");
@@ -733,6 +777,12 @@ public class MemJDBCDAO implements MemDAO_interface{
 //		memVO10.setMem_address("桃園市龜山區楓樹一街31號");
 //		memVO10.setMem_status((byte)2);
 //		dao.updateAll(memVO10);
+		
+		// 重設密碼
+		MemVO memVO11 = new MemVO();
+		memVO11.setMem_email("fafasfafas@armyspy.com");
+		memVO11.setMem_password("aaaaaaaa");
+		dao.resetPWD(memVO11);
 		
 //		List<MemVO> list = dao.getAll();
 //		for (MemVO aMem : list) {

@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mem.model.MemVO;
+
 
 public class EmplyeeJDBCDAO implements EmplyeeDAO_interface {
 
@@ -19,6 +21,7 @@ public class EmplyeeJDBCDAO implements EmplyeeDAO_interface {
 	private static final String INSERT_STMT = "INSERT INTO EMPLYEE (EMPNO,ROLES_ID,EMP_NAME,EMP_PASSWORD,EMP_STATUS) VALUES (?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT EMPNO, ROLES_ID, EMP_NAME, EMP_PASSWORD, EMP_STATUS FROM EMPLYEE ORDER BY EMPNO";
 	private static final String GET_ONE_STMT = "SELECT EMPNO, ROLES_ID, EMP_NAME, EMP_PASSWORD, EMP_STATUS FROM EMPLYEE WHERE EMPNO = ?";
+	private static final String GET_ONE_STMT_EMPNO_PASSWORD = "SELECT EMPNO, ROLES_ID, EMP_NAME, EMP_PASSWORD, EMP_STATUS FROM EMPLYEE WHERE EMPNO = ? AND EMP_PASSWORD = ?";
 	private static final String DELETE = "DELETE FROM EMPLYEE WHERE EMPNO = ?";
 	private static final String UPDATE = "UPDATE EMPLYEE SET ROLES_ID=?, EMP_NAME=?,EMP_PASSWORD=?, EMP_STATUS=? WHERE EMPNO = ?";
 	private static final String UPDATE_STATUS = "UPDATE EMPLYEE SET EMP_STATUS=? WHERE EMPNO = ?";
@@ -215,6 +218,69 @@ public class EmplyeeJDBCDAO implements EmplyeeDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
+				emplyeeVO = new EmplyeeVO();
+				emplyeeVO.setEmpno(rs.getInt("empno"));
+				emplyeeVO.setRoles_id(rs.getInt("roles_id"));
+				emplyeeVO.setEmp_name(rs.getString("emp_name"));
+				emplyeeVO.setEmp_password(rs.getString("emp_password"));
+				emplyeeVO.setEmp_status(rs.getBoolean("emp_status"));
+			}
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return emplyeeVO;
+	}
+
+	@Override
+	public EmplyeeVO selectForLogin(Integer empno, String emp_password) {
+		EmplyeeVO emplyeeVO = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			Class.forName(driver);
+			conn = DriverManager.getConnection(url, userid, passwd);
+			pstmt = conn.prepareStatement(GET_ONE_STMT_EMPNO_PASSWORD);
+
+			pstmt.setInt(1, empno);
+			pstmt.setString(2, emp_password);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// empVo 也稱為 Domain objects
 				emplyeeVO = new EmplyeeVO();
 				emplyeeVO.setEmpno(rs.getInt("empno"));
 				emplyeeVO.setRoles_id(rs.getInt("roles_id"));

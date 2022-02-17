@@ -8,6 +8,7 @@ public interface MemDAO_interface {
     public void updateAll(MemVO memVO);
     public void updatePic(MemVO memVO);
     public void updatePWD(MemVO memVO);
+    public void resetPWD(MemVO memVO);
     public void updateStatus(MemVO memVO);
     public MemVO findByPrimaryKey(Integer mem_id);
     public MemVO selectByEmail(String mem_email);

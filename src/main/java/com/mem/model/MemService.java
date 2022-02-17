@@ -70,11 +70,20 @@ public class MemService {
 		dao.updatePWD(memVO);
 		return memVO;
 	}
-
-	public MemVO updateMemStatus(Integer mem_id, Byte mem_status) {
+	
+	public MemVO resetPwd(String mem_email, String newpwd) {
 
 		MemVO memVO = new MemVO();
-		memVO.setMem_id(mem_id);
+		memVO.setMem_email(mem_email);
+		memVO.setMem_password(newpwd);
+		dao.resetPWD(memVO);
+		return memVO;
+	}
+
+	public MemVO updateMemStatus(String mem_email, Byte mem_status) {
+
+		MemVO memVO = new MemVO();
+		memVO.setMem_email(mem_email);
 		memVO.setMem_status(mem_status);
 		dao.updateStatus(memVO);
 		return memVO;
