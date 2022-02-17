@@ -31,7 +31,7 @@ public class LoginDAO implements LoginDAO_interface {
 		//Connection con = null;
 		//PreparedStatement pstmt = null;
 		
-		//String sql = "select * from cfa104g1db.EMPLYEE where EMP_ACCOUNT = ?  and EMP_PASSWORD	 = ?";
+		//String sql = "select * from EMPLYEE where EMP_ACCOUNT = ?  and EMP_PASSWORD	 = ?";
 
 		//try {
 		
