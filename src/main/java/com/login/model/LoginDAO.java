@@ -15,7 +15,7 @@ public class LoginDAO implements LoginDAO_interface {
 	private static final String PWD = "12345678";
 	
 	
-	//// �@�����ε{����,�w��@�Ӹ�Ʈw ,�@�Τ@��DataSource�Y�i
+	//// 使用JNDI
 	//private static DataSource ds = null;
 	//static {
 	//	try {
